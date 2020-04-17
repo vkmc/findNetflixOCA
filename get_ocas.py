@@ -1,6 +1,5 @@
-
 #  -*- coding: utf-8 -*-
-# !/usr/local/bin/python
+# !/usr/local/bin/python3
 
 """
 '''
@@ -8,7 +7,7 @@ Author: Esteban Carisimo
 Affiliaton: Universidad de Buenos Aires & CONICET
 Year: 2016
 Description:
-    Small piece of code to find out which Netflix's OCAs are candadites for the
+    Small piece of code to find out which Netflix's OCAs are candidates for
     the end-host that is running the code.
     The search of the OCAs is based on the information provided by fast.com
 '''
@@ -43,7 +42,7 @@ def get_host_isp_information():
     )
     print("############################################################################################################\n")
     print('> Host IP information\n')
-    print(host_isp_information)
+    print(host_isp_information.decode("utf-8"))
 
 
 def request_for_oca():
@@ -72,13 +71,13 @@ def request_for_oca():
         stdin=ps1.stdout
     ).strip()[7:]
     # Use TOKEN to request OCAs and URL to video chunk
-    response = requests.get(query % token)
+    response = requests.get(query % token.decode("utf-8"))
     # Turns `response` into dict
     oca_list = json.loads(response.text)
     print("############################################################################################################\n")
     print('> Allocated OCAs for this user\n')
     for oca in oca_list:
-            print(oca['url'])
+        print(oca['url'])
     print("############################################################################################################\n")
     print('> IP address of the allocated OCAs\n')
     for oca in oca_list:
